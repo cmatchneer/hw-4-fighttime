@@ -45,21 +45,31 @@ $(document).ready(function() {
         $(damage).text("Damage: " + heroLoader[i].damage);
         myImg.attr("src", heroLoader[i].fightPic);
         charBox.addClass("charaters");
-        charBox.append(myImg);
-        charBox.append(damage);
-        charBox.append(health);
+        charBox.attr("id", heroLoader[i].name);
+        charBox.append(myImg, damage, health);
+        // charBox.append(damage);
+        // charBox.append(health);
         $("#pickYourFighter").append(charBox);
+        console.log(heroLoader[i].name);
+        console.log(charBox.attr(("id", heroLoader[i].name)));
     }
+    $(".charaters").on("click", function() {
 
-
-    function theBrawl() {
-        $(".charBox").on("click", function() {
+        if (playerReady === false) {
             playerReady = true;
-            var hero = $(".charBox");
-            console.log(hero);
-        })
+            var hero = $(this)
+            $("#heroRoom").append(hero);
+            console.log(playerReady);
+        }
+        if (playerReady === true) {
+            var villian = $(this);
+            $("#badGuyRoom").append(villian);
+        }
 
-    }
+
+    })
+
+
 
 
 

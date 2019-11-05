@@ -36,7 +36,7 @@ img {
 }
 
 #heroRoom {
-    width: 100%;
+    /* width: 100%; */
     background-color: gold;
     height: 300px;
 }
