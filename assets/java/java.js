@@ -4,7 +4,8 @@ $(document).ready(function() {
     var losses = 0;
     var gameOver = false;
     var fightOn = false;
-    var playerReady = false;
+    var heroReady = false;
+    var badGuyReady = false;
     //the charaters stats and pics
     var char = {
         legolas: {
@@ -47,23 +48,25 @@ $(document).ready(function() {
         charBox.addClass("charaters");
         charBox.attr("id", heroLoader[i].name);
         charBox.append(myImg, damage, health);
-        // charBox.append(damage);
-        // charBox.append(health);
         $("#pickYourFighter").append(charBox);
-        console.log(heroLoader[i].name);
-        console.log(charBox.attr(("id", heroLoader[i].name)));
+
     }
     $(".charaters").on("click", function() {
+        // console.log(playerReady);
+        if (heroReady === false && badGuyReady === false) {
 
-        if (playerReady === false) {
-            playerReady = true;
             var hero = $(this)
             $("#heroRoom").append(hero);
-            console.log(playerReady);
-        }
-        if (playerReady === true) {
+            heroReady = true;
+            console.log(heroReady);
+
+        } else if (heroReady === true && badGuyReady === false) {
+            badGuyReady = true;
             var villian = $(this);
             $("#badGuyRoom").append(villian);
+
+            console.log(heroReady);
+
         }
 
 

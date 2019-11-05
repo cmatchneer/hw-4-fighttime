@@ -6,7 +6,7 @@ img {
 
 .charaters {
     position: relative;
-    width: 23%;
+    width: 310px;
     float: left;
     height: 300px;
     margin-left: 25px;
@@ -36,19 +36,24 @@ img {
 }
 
 #heroRoom {
-    /* width: 100%; */
+    margin: 20px;
+    width: 360px;
     background-color: gold;
     height: 300px;
+    float: left;
 }
 
 #badGuyRoom {
-    width: 100%;
+    margin: 20px;
+    width: 360px;
     background-color: black;
     height: 300px;
+    float: right;
 }
 
 #results {
-    width: 100%;
+    margin: 20px;
+    width: 360px;
     background-color: khaki;
     height: 250px;
 }
