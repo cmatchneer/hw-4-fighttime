@@ -35,10 +35,15 @@ img {
     text-align: center;
 }
 
+#letThemFight {
+    margin-top: 20px;
+    margin-left: 190px;
+}
+
 #heroRoom {
     margin: 20px;
     width: 360px;
-    background-color: gold;
+    /* background-color: gold; */
     height: 300px;
     float: left;
 }
@@ -46,13 +51,13 @@ img {
 #badGuyRoom {
     margin: 20px;
     width: 360px;
-    background-color: black;
+    /* background-color: black; */
     height: 300px;
     float: right;
 }
 
 #results {
-    margin: 20px;
+    margin: 0 auto;
     width: 360px;
     background-color: khaki;
     height: 250px;

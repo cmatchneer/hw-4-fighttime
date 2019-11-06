@@ -10,26 +10,26 @@ $(document).ready(function() {
     var char = {
         legolas: {
             name: "legolas",
-            health: 160,
-            damage: 20,
+            health: 100,
+            damage: 40,
             fightPic: "assets/images/legolas.jpg"
         },
         gimli: {
             name: "gimli",
-            health: 160,
+            health: 300,
             damage: 20,
             fightPic: "assets/images/gimli.jpg"
         },
         aragorn: {
             name: "aragorn",
-            health: 160,
-            damage: 20,
+            health: 250,
+            damage: 35,
             fightPic: "assets/images/aragorn.jpg"
         },
         gandalf: {
             name: "gandalf",
-            health: 160,
-            damage: 20,
+            health: 200,
+            damage: 50,
             fightPic: "assets/images/gandalf.jpg"
         },
     }
@@ -51,6 +51,7 @@ $(document).ready(function() {
         $("#pickYourFighter").append(charBox);
 
     }
+
     $(".charaters").on("click", function() {
         // console.log(playerReady);
         if (heroReady === false && badGuyReady === false) {
@@ -58,23 +59,17 @@ $(document).ready(function() {
             var hero = $(this)
             $("#heroRoom").append(hero);
             heroReady = true;
-            console.log(heroReady);
+            console.log(hero);
+            console.log($(this).damage);
 
         } else if (heroReady === true && badGuyReady === false) {
             badGuyReady = true;
-            var villian = $(this);
-            $("#badGuyRoom").append(villian);
-
-            console.log(heroReady);
-
+            var villain = $(this);
+            $("#badGuyRoom").append(villain);
+            console.log(villain);
         }
 
 
+
     })
-
-
-
-
-
-
 });
