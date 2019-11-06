@@ -3,30 +3,39 @@ $(document).ready(function() {
     var wins = 0;
     var losses = 0;
     var gameOver = false;
-    var fightOn = false;
+    // var fightOn = false;
     var heroReady = false;
     var badGuyReady = false;
+    var badGuyCount = 3;
+    var hero;
+    var villain;
+    var heroName;
+    var villainName;
+    var charBox;
+    var myImg;
+    var health;
+    var damage;
     //the charaters stats and pics
     var char = {
-        legolas: {
+        "legolas": {
             name: "legolas",
             health: 100,
             damage: 40,
             fightPic: "assets/images/legolas.jpg"
         },
-        gimli: {
+        "gimli": {
             name: "gimli",
             health: 300,
             damage: 20,
             fightPic: "assets/images/gimli.jpg"
         },
-        aragorn: {
+        "aragorn": {
             name: "aragorn",
             health: 250,
             damage: 35,
             fightPic: "assets/images/aragorn.jpg"
         },
-        gandalf: {
+        "gandalf": {
             name: "gandalf",
             health: 200,
             damage: 50,
@@ -36,10 +45,10 @@ $(document).ready(function() {
     var heroLoader = [char.legolas, char.gimli, char.aragorn, char.gandalf];
     //filling pick your fighter div
     for (var i = 0; i < heroLoader.length; i++) {
-        var charBox = $("<div>");
-        var myImg = $('<img>');
-        var health = $("<p>");
-        var damage = $("<p>");
+        charBox = $("<div>");
+        myImg = $('<img>');
+        health = $("<p>");
+        damage = $("<p>");
         damage.addClass("damage");
         health.addClass("health");
         $(health).text("Health: " + heroLoader[i].health);
@@ -51,25 +60,40 @@ $(document).ready(function() {
         $("#pickYourFighter").append(charBox);
 
     }
+    //sets up the hero and villain and puts them in their corner
 
     $(".charaters").on("click", function() {
-        // console.log(playerReady);
         if (heroReady === false && badGuyReady === false) {
-
-            var hero = $(this)
+            hero = $(this)
+            heroName = this.id;
             $("#heroRoom").append(hero);
             heroReady = true;
-            console.log(hero);
-            console.log($(this).damage);
+
+
 
         } else if (heroReady === true && badGuyReady === false) {
             badGuyReady = true;
-            var villain = $(this);
+            villain = $(this);
+            villainName = this.id
             $("#badGuyRoom").append(villain);
-            console.log(villain);
+
         }
 
 
 
     })
+
+
+    function theFight() {
+        $("#letThemFight").on("click", function() {
+            char[heroName].health = char[heroName].health - char[villainName].damage;
+            $(".health").text("Health: " + char[heroName].health);
+            console.log(char[heroName].health);
+            char[heroName].damage += 10;
+
+        })
+
+
+    }
+    theFight();
 });
