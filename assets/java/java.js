@@ -15,6 +15,7 @@ $(document).ready(function() {
     var myImg;
     var health;
     var damage;
+
     var sound = document.createElement('audio');
     //the charaters stats and pics
     var char = {
@@ -72,6 +73,36 @@ $(document).ready(function() {
     }
     //sets up the hero and villain and puts them in their corner
 
+
+    //resets game
+    function reset() {
+
+        $("#results").html("The once united Fellowship of The Ring have fallen to its evil corruption " + "<br>" + "Now only one remains untouched by its taint" + "<br>" + "Choose the hero and let the battle begin");
+        var heroLoader = [char.Legolas, char.Gimli, char.Aragorn, char.Gandalf];
+        $("#heroRoom").empty();
+        $("#badGuyRoom").empty();
+        $("#pickYourFighter").empty();
+
+        //filling pick your fighter div
+        for (var j = 0; j < heroLoader.length; j++) {
+            charBox = $("<div>");
+            myImg = $('<img>').attr("src", heroLoader[j].fightPic);
+            health = $("<p>");
+            damage = $("<p>");
+            $(myImg).addClass("pics");
+            damage.addClass("damage");
+            health.addClass("health");
+            $(health).text("Health: " + heroLoader[j].health);
+            $(damage).text("Damage: " + heroLoader[j].damage);
+            charBox.addClass("charaters");
+            charBox.attr("id", heroLoader[j].name);
+            charBox.append(myImg, damage, health);
+            $("#pickYourFighter").append(charBox);
+            console.log(heroLoader[j].name);
+
+        }
+
+    }
     $(".charaters").on("click", function() {
         // fightOn = true;
         if (heroReady === false && badGuyReady === false) {
@@ -100,7 +131,7 @@ $(document).ready(function() {
 
     // function theFight() {
     $("#letThemFight").on("click", function() {
-            console.log('FIGHT');
+
             char[heroName].damage += 10;
             char[heroName].health = char[heroName].health - char[villainName].damage;
             char[villainName].health = char[villainName].health - char[heroName].damage;
@@ -120,10 +151,14 @@ $(document).ready(function() {
                 $("#" + char[villainName].name + (" .pics")).attr("src", "assets/images/bad_Guy_Wins.gif")
                     //lose button creation
                 var loseBtn = $("<button>");
-                console.log(loseBtn);
                 loseBtn.addClass("loseButton btn btn-secondary");
                 loseBtn.text("Battle Lost");
                 $("#buttons").append(loseBtn);
+                //using lose button
+                $(".loseButton").on("click", function() {
+                    $(loseBtn).remove();
+                    reset();
+                });
 
             }
             if (char[heroName].health > 0 && char[villainName].health <= 0 && badGuyCount > 0) {
@@ -143,6 +178,14 @@ $(document).ready(function() {
                 console.log("win");
                 $("#" + char[heroName].name + (" .pics")).attr("src", char[heroName].winningPic);
                 $(villain).html(badGuyLosePic);
+                var winBtn = $("<button>");
+                winBtn.addClass("winButton btn btn-secondary");
+                winBtn.text("The Ring Is Yours");
+                $("#buttons").prepend(winBtn);
+                $(".winButton").on("click", function() {
+                    $(winBtn).remove();
+                    reset();
+                })
             }
 
 
