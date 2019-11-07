@@ -23,25 +23,32 @@ $(document).ready(function() {
             health: 100,
             damage: 40,
             fightPic: "assets/images/legolas.jpg",
-            lossingPic: "assets/images/legolas_losses.jpg"
+            lossingPic: "assets/images/legolas_wins.jpeg",
+            winningPic: "assets/images/legolas_losses.jpg"
         },
         "Gimli": {
             name: "Gimli",
             health: 300,
             damage: 20,
-            fightPic: "assets/images/gimli.jpg"
+            fightPic: "assets/images/gimli.jpg",
+            lossingPic: "assets/images/gimli_losses.jpg",
+            winningPic: "assets/images/gimli_wins.jpg"
         },
         "Aragorn": {
             name: "Aragorn",
             health: 250,
             damage: 35,
-            fightPic: "assets/images/aragorn.jpg"
+            fightPic: "assets/images/aragorn.jpg",
+            lossingPic: "assets/images/aragorn_losses.gif",
+            winningPic: "assets/images/aragorn_wins.gif"
         },
         "Gandalf": {
             name: "Gandalf",
-            health: 300,
-            damage: 150,
-            fightPic: "assets/images/gandalf.jpg"
+            health: 3000,
+            damage: 1500,
+            fightPic: "assets/images/gandalf.jpg",
+            lossingPic: "assets/images/gandalf_losses.gif",
+            winningPic: "assets/images/gandalf_wins.gif"
         },
     }
     $("#results").html("The once united Fellowship of The Ring have fallen to its evil corruption " + "<br>" + "Now only one remains untocuhed by its taint" + "<br>" + "Choose the hero and let the battle begin");
@@ -52,6 +59,7 @@ $(document).ready(function() {
         myImg = $('<img>').attr("src", heroLoader[i].fightPic);
         health = $("<p>");
         damage = $("<p>");
+        $(myImg).addClass("pics");
         damage.addClass("damage");
         health.addClass("health");
         $(health).text("Health: " + heroLoader[i].health);
@@ -79,7 +87,7 @@ $(document).ready(function() {
             badGuyReady = true;
             villain = $(this);
             villainName = this.id
-            $("#badGuyRoom").append(villain);
+            $("#badGuyRoom").html(villain);
             $("#results").html("Your enemy is " + villainName);
 
         }
@@ -103,10 +111,11 @@ $(document).ready(function() {
             // console.log(char[heroName].health);
             // console.log(char[villainName].health);
             if (char[heroName].health <= 0 && char[villainName].health > 0 && badGuyCount > 0) {
-
                 gameOver = true;
-                console.log("lose");
+                console.log("#" + char[heroName].name + +"<img>");
                 $("#results").html(heroName + " has fallen to " + villainName + "<br>" + "The Ring and thus all hope for the Third Age is lost")
+                $("#" + char[heroName].name + (" .pics")).attr("src", char[heroName].lossingPic);
+                $("#" + char[villainName].name + (" .pics")).attr("src", "assets/images/bad_Guy_Wins.webp")
 
             }
             if (char[heroName].health > 0 && char[villainName].health <= 0 && badGuyCount > 0) {
@@ -114,15 +123,18 @@ $(document).ready(function() {
                 badGuyReady = false;
                 fightOn = false;
                 console.log(fightOn);
-                $("#badGuyRoom").empty();
+                $(villain).empty();
                 $("#results").html(heroName + " has beaten " + villainName + "<br>" + " Now you must pick another villain to fight")
 
             }
             if (char[heroName].health > 0 && char[villainName].health <= 0 && badGuyCount === 0) {
                 $("#results").html(heroName + " has won and can now destroy the Ring of Power" + "<br>" + " Hope had been restored to the Age");
-                $("#badGuyRoom").empty();
+                var badGuyLosePic = $("<img>").attr("src", "assets/images/good_guy_wins.gif");
+                $(badGuyLosePic).addClass("pics");
                 gameOver = true;
                 console.log("win");
+                $("#" + char[heroName].name + (" .pics")).attr("src", char[heroName].winningPic);
+                $(villain).html(badGuyLosePic);
             }
 
 
