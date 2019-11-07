@@ -52,24 +52,50 @@ $(document).ready(function() {
             winningPic: "assets/images/gandalf_wins.gif"
         },
     }
-    $("#results").html("The once united Fellowship of The Ring have fallen to its evil corruption " + "<br>" + "Now only one remains untouched by its taint" + "<br>" + "Choose the hero and let the battle begin");
-    var heroLoader = [char.Legolas, char.Gimli, char.Aragorn, char.Gandalf];
-    //filling pick your fighter div
-    for (var i = 0; i < heroLoader.length; i++) {
-        charBox = $("<div>");
-        myImg = $('<img>').attr("src", heroLoader[i].fightPic);
-        health = $("<p>");
-        damage = $("<p>");
-        $(myImg).addClass("pics");
-        damage.addClass("damage");
-        health.addClass("health");
-        $(health).text("Health: " + heroLoader[i].health);
-        $(damage).text("Damage: " + heroLoader[i].damage);
-        charBox.addClass("charaters");
-        charBox.attr("id", heroLoader[i].name);
-        charBox.append(myImg, damage, health);
-        $("#pickYourFighter").append(charBox);
 
+    function gameStart() {
+        $("#results").html("The once united Fellowship of The Ring have fallen to its evil corruption " + "<br>" + "Now only one remains untouched by its taint" + "<br>" + "Choose the hero and let the battle begin");
+        var heroLoader = [char.Legolas, char.Gimli, char.Aragorn, char.Gandalf];
+        //filling pick your fighter div
+        for (var i = 0; i < heroLoader.length; i++) {
+            charBox = $("<div>");
+            myImg = $('<img>').attr("src", heroLoader[i].fightPic);
+            health = $("<p>");
+            damage = $("<p>");
+            $(myImg).addClass("pics");
+            damage.addClass("damage");
+            health.addClass("health");
+            $(health).text("Health: " + heroLoader[i].health);
+            $(damage).text("Damage: " + heroLoader[i].damage);
+            charBox.addClass("charaters");
+            charBox.attr("id", heroLoader[i].name);
+            charBox.append(myImg, damage, health);
+            $("#pickYourFighter").append(charBox);
+
+        }
+        $(".charaters").on("click", function() {
+            // fightOn = true;
+            if (heroReady === false && badGuyReady === false) {
+                hero = $(this)
+                heroName = this.id;
+                $("#heroRoom").append(hero);
+                heroReady = true;
+                $("#results").html("You have chosen " + heroName);
+
+
+
+            } else if (heroReady === true && badGuyReady === false) {
+                badGuyReady = true;
+                villain = $(this);
+                villainName = this.id
+                $("#badGuyRoom").html(villain);
+                $("#results").html("Your enemy is " + villainName);
+                sound.setAttribute("src", "assets/audio/fight_time.m4a");
+                sound.play();
+
+            }
+
+        })
     }
     //sets up the hero and villain and puts them in their corner
 
@@ -83,49 +109,32 @@ $(document).ready(function() {
         $("#badGuyRoom").empty();
         $("#pickYourFighter").empty();
 
-        //filling pick your fighter div
-        for (var j = 0; j < heroLoader.length; j++) {
-            charBox = $("<div>");
-            myImg = $('<img>').attr("src", heroLoader[j].fightPic);
-            health = $("<p>");
-            damage = $("<p>");
-            $(myImg).addClass("pics");
-            damage.addClass("damage");
-            health.addClass("health");
-            $(health).text("Health: " + heroLoader[j].health);
-            $(damage).text("Damage: " + heroLoader[j].damage);
-            charBox.addClass("charaters");
-            charBox.attr("id", heroLoader[j].name);
-            charBox.append(myImg, damage, health);
-            $("#pickYourFighter").append(charBox);
-            console.log(heroLoader[j].name);
+        gameStart();
 
-        }
+        // for (var j = 0; j < heroLoader.length; j++) {
+        //     charBox = $("<div>");
+        //     myImg = $('<img>').attr("src", heroLoader[j].fightPic);
+        //     health = $("<p>");
+        //     damage = $("<p>");
+        //     $(myImg).addClass("pics");
+        //     damage.addClass("damage");
+        //     health.addClass("health");
+        //     $(health).text("Health: " + heroLoader[j].health);
+        //     $(damage).text("Damage: " + heroLoader[j].damage);
+        //     charBox.addClass("charaters");
+        //     charBox.attr("id", heroLoader[j].name);
+        //     charBox.append(myImg, damage, health);
+        //     $("#pickYourFighter").append(charBox);
+        //     console.log(heroLoader[j].name);
+
+        // }
 
     }
-    $(".charaters").on("click", function() {
-        // fightOn = true;
-        if (heroReady === false && badGuyReady === false) {
-            hero = $(this)
-            heroName = this.id;
-            $("#heroRoom").append(hero);
-            heroReady = true;
-            $("#results").html("You have chosen " + heroName);
+
+    gameStart();
 
 
 
-        } else if (heroReady === true && badGuyReady === false) {
-            badGuyReady = true;
-            villain = $(this);
-            villainName = this.id
-            $("#badGuyRoom").html(villain);
-            $("#results").html("Your enemy is " + villainName);
-            sound.setAttribute("src", "assets/audio/fight_time.m4a");
-            sound.play();
-
-        }
-
-    })
 
 
 
