@@ -23,16 +23,16 @@ $(document).ready(function() {
             health: 100,
             damage: 40,
             fightPic: "assets/images/legolas.jpg",
-            lossingPic: "assets/images/legolas_wins.jpeg",
-            winningPic: "assets/images/legolas_losses.jpg"
+            lossingPic: "assets/images/legolas_losses.gif",
+            winningPic: "assets/images/legolas_wins.gif"
         },
         "Gimli": {
             name: "Gimli",
             health: 300,
             damage: 20,
             fightPic: "assets/images/gimli.jpg",
-            lossingPic: "assets/images/gimli_losses.jpg",
-            winningPic: "assets/images/gimli_wins.jpg"
+            lossingPic: "assets/images/gimli_losses.gif",
+            winningPic: "assets/images/gimli_wins.gif"
         },
         "Aragorn": {
             name: "Aragorn",
@@ -115,7 +115,7 @@ $(document).ready(function() {
                 console.log("#" + char[heroName].name + +"<img>");
                 $("#results").html(heroName + " has fallen to " + villainName + "<br>" + "The Ring and thus all hope for the Third Age is lost")
                 $("#" + char[heroName].name + (" .pics")).attr("src", char[heroName].lossingPic);
-                $("#" + char[villainName].name + (" .pics")).attr("src", "assets/images/bad_Guy_Wins.webp")
+                $("#" + char[villainName].name + (" .pics")).attr("src", "assets/images/bad_Guy_Wins.gif")
 
             }
             if (char[heroName].health > 0 && char[villainName].health <= 0 && badGuyCount > 0) {
