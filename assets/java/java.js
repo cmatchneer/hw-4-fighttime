@@ -25,7 +25,11 @@ $(document).ready(function() {
             damage: 40,
             fightPic: "assets/images/legolas.jpg",
             lossingPic: "assets/images/legolas_losses.gif",
-            winningPic: "assets/images/legolas_wins.gif"
+            winningPic: "assets/images/legolas_wins.gif",
+            readyUp: ("assets/audio/legolas_ready.m4a"),
+            winRound: ("assets/audio/legolas_win_round.wav"),
+            loseGame: ("assets/audio/legolas_lose.m4a"),
+            winGame: ("assets/audio/legolas_wins.m4a")
         },
         "Gimli": {
             name: "Gimli",
@@ -33,7 +37,11 @@ $(document).ready(function() {
             damage: 30,
             fightPic: "assets/images/gimli.jpg",
             lossingPic: "assets/images/gimli_losses.gif",
-            winningPic: "assets/images/gimli_wins.gif"
+            winningPic: "assets/images/gimli_wins.gif",
+            readyUp: ("assets/audio/gimli_ready.m4a"),
+            winRound: ("assets/audio/gimli_win_round.m4a"),
+            loseGame: ("assets/audio/gimli_lose.m4a"),
+            winGame: ("assets/audio/gimli_wins.m4a")
         },
         "Aragorn": {
             name: "Aragorn",
@@ -41,7 +49,11 @@ $(document).ready(function() {
             damage: 35,
             fightPic: "assets/images/aragorn.jpg",
             lossingPic: "assets/images/aragorn_losses.gif",
-            winningPic: "assets/images/aragorn_wins.gif"
+            winningPic: "assets/images/aragorn_wins.gif",
+            readyUp: ("assets/audio/aragorn_ready.mp3"),
+            winRound: ("assets/audio/aragorn_win_round.m4a"),
+            loseGame: ("assets/audio/aragorn_loses.m4a"),
+            winGame: ("assets/audio/aragorn_wins.m4a")
         },
         "Gandalf": {
             name: "Gandalf",
@@ -49,7 +61,11 @@ $(document).ready(function() {
             damage: 45,
             fightPic: "assets/images/gandalf.jpg",
             lossingPic: "assets/images/gandalf_losses.gif",
-            winningPic: "assets/images/gandalf_wins.gif"
+            winningPic: "assets/images/gandalf_wins.gif",
+            readyUp: ("assets/audio/gandalf_ready.m4a"),
+            winRound: ("assets/audio/gandalf_win_round.mp3"),
+            loseGame: ("assets/audio/gandalf_lose.m4a"),
+            winGame: ("assets/audio/gandalf_win.mp3")
         },
     }
 
@@ -82,6 +98,8 @@ $(document).ready(function() {
                 $("#heroRoom").append(hero);
                 heroReady = true;
                 $("#results").html("You have chosen " + heroName);
+                sound.setAttribute("src", char[heroName].readyUp);
+                sound.play();
 
 
 
@@ -118,6 +136,7 @@ $(document).ready(function() {
         char.Aragorn.damage = 35;
         char.Gandalf.health = 200;
         char.Gandalf.damage = 45;
+        badGuyCount = 3;
         heroReady = false;
         badGuyReady = false;
         gameStart();
@@ -132,24 +151,23 @@ $(document).ready(function() {
 
     // function theFight() {
     $("#letThemFight").on("click", function() {
+            sound.setAttribute("src", "assets/audio/battle_time.m4a");
+            sound.play();
+
             if (char[heroName].name === "Legolas") {
-                char[heroName].damage += 9;
+                char[heroName].damage += 18;
 
             }
             if (char[heroName].name === "Gimli") {
-                char[heroName].damage += 4;
+                char[heroName].damage += 7;
             }
             if (char[heroName].name === "Gandalf") {
-                char[heroName].damage += 5;
+                char[heroName].damage += 16;
             }
             if (char[heroName].name === "Aragorn") {
-                char[heroName].damage += 5;
+                char[heroName].damage += 14;
 
             }
-
-            // else {
-            // //     char[heroName].damage += 5;
-            // // }
             char[heroName].health = char[heroName].health - char[villainName].damage;
             char[villainName].health = char[villainName].health - char[heroName].damage;
             $("#" + char[heroName].name + " .damage").text("Damage: " + char[heroName].damage);
@@ -157,9 +175,8 @@ $(document).ready(function() {
             $("#" + char[villainName].name + " .health").text("Health: " + char[villainName].health);
             $("#results").html(heroName + " has " + char[heroName].health + " health " + "<br>" + villainName + " has " + char[villainName].health + " health " +
                 "<br>" + "The battle Rages On");
-            console.log("#" + char[heroName].name + " .damage");
-            // console.log(char[heroName].health);
-            // console.log(char[villainName].health);
+
+
 
             //losing
             if (char[heroName].health <= 0) {
@@ -171,6 +188,8 @@ $(document).ready(function() {
                 $("#" + char[villainName].name + (" .pics")).attr("src", "assets/images/bad_Guy_Wins.gif")
                 $(" .health").remove();
                 $(" .damage").remove();
+                sound.setAttribute("src", char[heroName].loseGame);
+                sound.play();
                 //lose button creation
                 var loseBtn = $("<button>");
                 loseBtn.addClass("loseButton btn btn-secondary");
@@ -188,17 +207,18 @@ $(document).ready(function() {
                 badGuyReady = false;
                 fightOn = false;
                 if (char[heroName].name === "Legolas") {
-                    char[heroName].health += 20;
+                    char[heroName].health += 40;
                 }
                 if (char[heroName].name === "Gimli") {
-                    char[heroName].health += 21;
+                    char[heroName].health += 26;
                 }
                 if (char[heroName].name === "Gandalf") {
-                    char[heroName].health += 20;
+                    char[heroName].health += 30;
                 } else {
-                    char[heroName].health += 23;
+                    char[heroName].health += 30;
                 }
-                console.log(char[heroName].health += 50);
+                sound.setAttribute("src", char[heroName].winRound);
+                sound.play();
                 $("#" + char[heroName].name + " .health").text("Health: " + char[heroName].health);
                 console.log(fightOn);
                 $(villain).empty();
@@ -215,10 +235,12 @@ $(document).ready(function() {
                 $("#" + char[heroName].name + (" .pics")).attr("src", char[heroName].winningPic);
                 $(villain).html(badGuyLosePic);
                 $(" .health").remove();
-                $(". damage").remove();
+                $(" .damage").remove();
+                sound.setAttribute("src", char[heroName].winGame);
+                sound.play();
                 var winBtn = $("<button>");
                 winBtn.addClass("winButton btn btn-secondary");
-                winBtn.text("The Ring Is Yours");
+                winBtn.text("The Ring is Yours");
                 $("#buttons").prepend(winBtn);
                 $(".winButton").on("click", function() {
                     $(this).remove();
