@@ -67,14 +67,14 @@ $(document).ready(function() {
             health.addClass("health");
             health.text("Health: " + heroLoader[i].health);
             damage.text("Damage: " + heroLoader[i].damage);
-            charBox.addClass("charaters");
+            charBox.addClass("characters");
             charBox.attr("id", heroLoader[i].name);
             charBox.append(myImg, damage, health);
             $("#pickYourFighter").append(charBox);
 
         }
         //sets up the hero and villain and puts them in their corner
-        $(".charaters").on("click", function() {
+        $(".characters").on("click", function() {
             // fightOn = true;
             if (heroReady === false && badGuyReady === false) {
                 hero = $(this)
@@ -160,12 +160,18 @@ $(document).ready(function() {
             console.log("#" + char[heroName].name + " .damage");
             // console.log(char[heroName].health);
             // console.log(char[villainName].health);
+
+            //losing
             if (char[heroName].health <= 0) {
+                losses++;
                 gameOver = true;
-                $("#results").html(heroName + " has fallen to " + villainName + "<br>" + "The Ring and thus all hope for the Third Age is lost")
+                $("#results").html(heroName + " has fallen to " + villainName + "<br>" + "The Ring and thus all hope for the Third Age is lost" +
+                    "<br>" + " You have lost " + losses + " times try another path");
                 $("#" + char[heroName].name + (" .pics")).attr("src", char[heroName].lossingPic);
                 $("#" + char[villainName].name + (" .pics")).attr("src", "assets/images/bad_Guy_Wins.gif")
-                    //lose button creation
+                $(" .health").remove();
+                $(" .damage").remove();
+                //lose button creation
                 var loseBtn = $("<button>");
                 loseBtn.addClass("loseButton btn btn-secondary");
                 loseBtn.text("Battle Lost");
@@ -200,12 +206,16 @@ $(document).ready(function() {
 
             }
             if (char[heroName].health > 0 && char[villainName].health <= 0 && badGuyCount === 0) {
-                $("#results").html(heroName + " has won and can now destroy the Ring of Power" + "<br>" + " Hope had been restored to the Age");
+                wins++
+                $("#results").html(heroName + " has won and can now destroy the Ring of Power" + "<br>" + " Hope had been restored to the Age" +
+                    "<br>" + "You have won " + wins + " times try another hero");
                 var badGuyLosePic = $("<img>").attr("src", "assets/images/good_guy_wins.gif");
                 $(badGuyLosePic).addClass("pics");
                 gameOver = true;
                 $("#" + char[heroName].name + (" .pics")).attr("src", char[heroName].winningPic);
                 $(villain).html(badGuyLosePic);
+                $(" .health").remove();
+                $(". damage").remove();
                 var winBtn = $("<button>");
                 winBtn.addClass("winButton btn btn-secondary");
                 winBtn.text("The Ring Is Yours");
