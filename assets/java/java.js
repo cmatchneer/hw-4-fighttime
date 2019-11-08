@@ -15,60 +15,59 @@ $(document).ready(function() {
     var myImg;
     var health;
     var damage;
-
     var sound = document.createElement('audio');
-    //the charaters stats and pics
+    //the charaters stats, pics and audio
     var char = {
-        "Legolas": {
-            name: "Legolas",
-            health: 150,
-            damage: 40,
-            fightPic: "assets/images/legolas.jpg",
-            lossingPic: "assets/images/legolas_losses.gif",
-            winningPic: "assets/images/legolas_wins.gif",
-            readyUp: ("assets/audio/legolas_ready.m4a"),
-            winRound: ("assets/audio/legolas_win_round.wav"),
-            loseGame: ("assets/audio/legolas_lose.m4a"),
-            winGame: ("assets/audio/legolas_wins.m4a")
-        },
-        "Gimli": {
-            name: "Gimli",
-            health: 280,
-            damage: 30,
-            fightPic: "assets/images/gimli.jpg",
-            lossingPic: "assets/images/gimli_losses.gif",
-            winningPic: "assets/images/gimli_wins.gif",
-            readyUp: ("assets/audio/gimli_ready.m4a"),
-            winRound: ("assets/audio/gimli_win_round.m4a"),
-            loseGame: ("assets/audio/gimli_lose.m4a"),
-            winGame: ("assets/audio/gimli_wins.m4a")
-        },
-        "Aragorn": {
-            name: "Aragorn",
-            health: 250,
-            damage: 35,
-            fightPic: "assets/images/aragorn.jpg",
-            lossingPic: "assets/images/aragorn_losses.gif",
-            winningPic: "assets/images/aragorn_wins.gif",
-            readyUp: ("assets/audio/aragorn_ready.mp3"),
-            winRound: ("assets/audio/aragorn_win_round.m4a"),
-            loseGame: ("assets/audio/aragorn_loses.m4a"),
-            winGame: ("assets/audio/aragorn_wins.m4a")
-        },
-        "Gandalf": {
-            name: "Gandalf",
-            health: 200,
-            damage: 45,
-            fightPic: "assets/images/gandalf.jpg",
-            lossingPic: "assets/images/gandalf_losses.gif",
-            winningPic: "assets/images/gandalf_wins.gif",
-            readyUp: ("assets/audio/gandalf_ready.m4a"),
-            winRound: ("assets/audio/gandalf_win_round.mp3"),
-            loseGame: ("assets/audio/gandalf_lose.m4a"),
-            winGame: ("assets/audio/gandalf_win.mp3")
-        },
-    }
-
+            "Legolas": {
+                name: "Legolas",
+                health: 150,
+                damage: 40,
+                fightPic: "assets/images/legolas.jpg",
+                lossingPic: "assets/images/legolas_losses.gif",
+                winningPic: "assets/images/legolas_wins.gif",
+                readyUp: ("assets/audio/legolas_ready.m4a"),
+                winRound: ("assets/audio/legolas_win_round.wav"),
+                loseGame: ("assets/audio/legolas_lose.m4a"),
+                winGame: ("assets/audio/legolas_wins.m4a")
+            },
+            "Gimli": {
+                name: "Gimli",
+                health: 280,
+                damage: 30,
+                fightPic: "assets/images/gimli.jpg",
+                lossingPic: "assets/images/gimli_losses.gif",
+                winningPic: "assets/images/gimli_wins.gif",
+                readyUp: ("assets/audio/gimli_ready.m4a"),
+                winRound: ("assets/audio/gimli_win_round.m4a"),
+                loseGame: ("assets/audio/gimli_lose.m4a"),
+                winGame: ("assets/audio/gimli_wins.m4a")
+            },
+            "Aragorn": {
+                name: "Aragorn",
+                health: 250,
+                damage: 35,
+                fightPic: "assets/images/aragorn.jpg",
+                lossingPic: "assets/images/aragorn_losses.gif",
+                winningPic: "assets/images/aragorn_wins.gif",
+                readyUp: ("assets/audio/aragorn_ready.mp3"),
+                winRound: ("assets/audio/aragorn_win_round.m4a"),
+                loseGame: ("assets/audio/aragorn_loses.m4a"),
+                winGame: ("assets/audio/aragorn_wins.m4a")
+            },
+            "Gandalf": {
+                name: "Gandalf",
+                health: 200,
+                damage: 45,
+                fightPic: "assets/images/gandalf.jpg",
+                lossingPic: "assets/images/gandalf_losses.gif",
+                winningPic: "assets/images/gandalf_wins.gif",
+                readyUp: ("assets/audio/gandalf_ready.m4a"),
+                winRound: ("assets/audio/gandalf_win_round.mp3"),
+                loseGame: ("assets/audio/gandalf_lose.m4a"),
+                winGame: ("assets/audio/gandalf_win.mp3")
+            },
+        }
+        //starts up the game
     function gameStart() {
         $("#results").html("The once united Fellowship of The Ring have fallen to its evil corruption " + "<br>" + "Now only one remains untouched by its taint" + "<br>" + "Choose the hero and let the battle begin");
         var heroLoader = [char.Legolas, char.Gimli, char.Aragorn, char.Gandalf];
@@ -91,7 +90,7 @@ $(document).ready(function() {
         }
         //sets up the hero and villain and puts them in their corner
         $(".characters").on("click", function() {
-            // fightOn = true;
+            fightOn = true;
             if (heroReady === false && badGuyReady === false) {
                 hero = $(this)
                 heroName = this.id;
@@ -117,14 +116,9 @@ $(document).ready(function() {
 
         })
     }
-
-
-
     //resets game
     function reset() {
-
         $("#results").html("The once united Fellowship of The Ring have fallen to its evil corruption " + "<br>" + "Now only one remains untouched by its taint" + "<br>" + "Choose the hero and let the battle begin");
-        // var heroLoader = [char.Legolas, char.Gimli, char.Aragorn, char.Gandalf];
         $("#heroRoom").empty();
         $("#badGuyRoom").empty();
         $("#pickYourFighter").empty();
@@ -139,18 +133,16 @@ $(document).ready(function() {
         badGuyCount = 3;
         heroReady = false;
         badGuyReady = false;
+        gameOver = false;
+        fightOn = true;
         gameStart();
     }
 
     gameStart();
 
-
-
-
-
-
-    // function theFight() {
     $("#letThemFight").on("click", function() {
+        // locks the game if you win, lose or win a round
+        if (fightOn === true && gameOver === false) {
             sound.setAttribute("src", "assets/audio/battle_time.m4a");
             sound.play();
 
@@ -176,9 +168,7 @@ $(document).ready(function() {
             $("#results").html(heroName + " has " + char[heroName].health + " health " + "<br>" + villainName + " has " + char[villainName].health + " health " +
                 "<br>" + "The battle Rages On");
 
-
-
-            //losing
+            //losing game
             if (char[heroName].health <= 0) {
                 losses++;
                 gameOver = true;
@@ -202,6 +192,7 @@ $(document).ready(function() {
                 });
 
             }
+            // winning a round
             if (char[heroName].health > 0 && char[villainName].health <= 0 && badGuyCount > 0) {
                 badGuyCount -= 1;
                 badGuyReady = false;
@@ -220,11 +211,12 @@ $(document).ready(function() {
                 sound.setAttribute("src", char[heroName].winRound);
                 sound.play();
                 $("#" + char[heroName].name + " .health").text("Health: " + char[heroName].health);
-                console.log(fightOn);
+
                 $(villain).empty();
                 $("#results").html(heroName + " has beaten " + villainName + "<br>" + " Now you must pick another villain to fight")
 
             }
+            //winning the game
             if (char[heroName].health > 0 && char[villainName].health <= 0 && badGuyCount === 0) {
                 wins++
                 $("#results").html(heroName + " has won and can now destroy the Ring of Power" + "<br>" + " Hope had been restored to the Age" +
@@ -238,6 +230,7 @@ $(document).ready(function() {
                 $(" .damage").remove();
                 sound.setAttribute("src", char[heroName].winGame);
                 sound.play();
+                //win button creation and exuction
                 var winBtn = $("<button>");
                 winBtn.addClass("winButton btn btn-secondary");
                 winBtn.text("The Ring is Yours");
@@ -247,21 +240,8 @@ $(document).ready(function() {
                     reset();
                 })
             }
+        }
 
 
-        })
-        //     console.log(fightOn);
-
-    //     return fightOn, gameOver;
-
-    // }
-
-    // if (fightOn === false || gameOver === true) {
-
-    //     return;
-    // }
-    if (fightOn === false && gameOver === true) {
-        console.log("test");
-    }
-
+    })
 })
