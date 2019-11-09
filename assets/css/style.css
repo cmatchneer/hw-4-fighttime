@@ -53,9 +53,14 @@ p {
     text-align: center;
 }
 
+.btn {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
 #buttons {
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     position: relative;
     width: 340px;
     height: 40px;
@@ -67,8 +72,8 @@ p {
     left: 190px;
     color: black !important;
     border: 2px black solid !important;
+    background-color: firebrick;
     box-shadow: 0 4px black;
-    background-image: url("../images/fight_button.jpg");
 }
 
 #letThemFight:active {
