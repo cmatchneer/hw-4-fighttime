@@ -65,7 +65,9 @@ p {
     margin: 0 auto;
     position: absolute;
     left: 190px;
-    background-image: "../images/fight_button.jpeg" !important;
+    color: black !important;
+    border: 2px black solid !important;
+    background-image: url("../images/fight_button.jpg");
 }
 
 .loseButton {
