@@ -67,7 +67,13 @@ p {
     left: 190px;
     color: black !important;
     border: 2px black solid !important;
+    box-shadow: 0 4px black;
     background-image: url("../images/fight_button.jpg");
+}
+
+#letThemFight:active {
+    box-shadow: 0 1px black;
+    transform: translateY(4px);
 }
 
 .loseButton {
@@ -76,6 +82,7 @@ p {
     color: darkred !important;
     position: absolute;
     left: 260px;
+    box-shadow: 0 4px black;
 }
 
 .loseButton:hover {
@@ -84,17 +91,28 @@ p {
     color: gold !important;
 }
 
+.loseButton:active {
+    box-shadow: 0 1px black;
+    transform: translateY(4px);
+}
+
 .winButton {
     background-color: gold !important;
     border: 2px black solid !important;
     color: black;
     position: absolute;
     left: 30px;
+    box-shadow: 0 4px black;
 }
 
 .winButton:hover {
     color: darkred !important;
     border: 2px darkred solid !important;
+}
+
+.winButton:active {
+    box-shadow: 0 1px black;
+    transform: translateY(4px);
 }
 
 #heroRoom {
