@@ -183,7 +183,7 @@ $(document).ready(function() {
                 //lose button creation
                 var loseBtn = $("<button>");
                 loseBtn.addClass("loseButton btn btn-secondary");
-                loseBtn.text("Battle Lost");
+                loseBtn.text("You lost The Ring");
                 $("#buttons").append(loseBtn);
                 //using lose button
                 $(".loseButton").on("click", function() {

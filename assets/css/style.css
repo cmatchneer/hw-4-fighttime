@@ -8,7 +8,12 @@ body {
     width: 100%;
     background: url("../images/background_pic.jpg");
     background-position: center;
+    font-family: 'Oswald', sans-serif;
     /* background-color: black; */
+}
+
+p {
+    font-family: 'McLaren', cursive;
 }
 
 .buttons {
@@ -48,16 +53,51 @@ body {
     text-align: center;
 }
 
-#letThemFight {
-    margin-left: 180px;
+#buttons {
     margin-top: 10px;
     margin-bottom: 10px;
+    position: relative;
+    width: 340px;
+    height: 40px;
+}
+
+#letThemFight {
+    margin: 0 auto;
+    position: absolute;
+    left: 190px;
+    background-image: "../images/fight_button.jpeg" !important;
+}
+
+.loseButton {
+    background-color: black !important;
+    border: 2px darkred solid !important;
+    color: darkred !important;
+    position: absolute;
+    left: 260px;
+}
+
+.loseButton:hover {
+    background-color: darkred !important;
+    border: 2px black solid !important;
+    color: gold !important;
+}
+
+.winButton {
+    background-color: gold !important;
+    border: 2px black solid !important;
+    color: black;
+    position: absolute;
+    left: 30px;
+}
+
+.winButton:hover {
+    color: darkred !important;
+    border: 2px darkred solid !important;
 }
 
 #heroRoom {
     margin: 20px;
     width: 360px;
-    /* background-color: gold; */
     height: 300px;
     float: left;
 }
@@ -65,17 +105,18 @@ body {
 #badGuyRoom {
     margin: 20px;
     width: 360px;
-    /* background-color: black; */
     height: 300px;
     float: right;
 }
 
 #results {
+    font-family: 'Cedarville Cursive', cursive;
+    font-size: 25px;
     background: url("../images/results.jpg");
     background-position: center;
     text-align: center;
     margin: 0 auto;
-    width: 340px;
+    width: 360px;
     background-color: khaki;
     height: 300px;
 }
