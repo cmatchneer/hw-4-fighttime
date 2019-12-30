@@ -18,56 +18,57 @@ $(document).ready(function() {
     var sound = document.createElement('audio');
     //the charaters stats, pics and audio
     var char = {
-            "Legolas": {
-                name: "Legolas",
-                health: 150,
-                damage: 40,
-                fightPic: "assets/images/legolas.jpg",
-                lossingPic: "assets/images/legolas_losses.gif",
-                winningPic: "assets/images/legolas_wins.gif",
-                readyUp: ("assets/audio/legolas_ready.m4a"),
-                winRound: ("assets/audio/legolas_win_round.wav"),
-                loseGame: ("assets/audio/legolas_lose.m4a"),
-                winGame: ("assets/audio/legolas_wins.m4a")
-            },
-            "Gimli": {
-                name: "Gimli",
-                health: 280,
-                damage: 30,
-                fightPic: "assets/images/gimli.jpg",
-                lossingPic: "assets/images/gimli_losses.gif",
-                winningPic: "assets/images/gimli_wins.gif",
-                readyUp: ("assets/audio/gimli_ready.m4a"),
-                winRound: ("assets/audio/gimli_win_round.m4a"),
-                loseGame: ("assets/audio/gimli_lose.m4a"),
-                winGame: ("assets/audio/gimli_wins.m4a")
-            },
-            "Aragorn": {
-                name: "Aragorn",
-                health: 250,
-                damage: 35,
-                fightPic: "assets/images/aragorn.jpg",
-                lossingPic: "assets/images/aragorn_losses.gif",
-                winningPic: "assets/images/aragorn_wins.gif",
-                readyUp: ("assets/audio/aragorn_ready.mp3"),
-                winRound: ("assets/audio/aragorn_win_round.m4a"),
-                loseGame: ("assets/audio/aragorn_loses.m4a"),
-                winGame: ("assets/audio/aragorn_wins.m4a")
-            },
-            "Gandalf": {
-                name: "Gandalf",
-                health: 200,
-                damage: 45,
-                fightPic: "assets/images/gandalf.jpg",
-                lossingPic: "assets/images/gandalf_losses.gif",
-                winningPic: "assets/images/gandalf_wins.gif",
-                readyUp: ("assets/audio/gandalf_ready.m4a"),
-                winRound: ("assets/audio/gandalf_win_round.mp3"),
-                loseGame: ("assets/audio/gandalf_lose.m4a"),
-                winGame: ("assets/audio/gandalf_win.mp3")
-            },
-        }
-        //starts up the game
+        "Legolas": {
+            name: "Legolas",
+            health: 150,
+            damage: 40,
+            fightPic: "assets/images/legolas.jpg",
+            lossingPic: "assets/images/legolas_losses.gif",
+            winningPic: "assets/images/legolas_wins.gif",
+            readyUp: ("assets/audio/legolas_ready.m4a"),
+            winRound: ("assets/audio/legolas_win_round.wav"),
+            loseGame: ("assets/audio/legolas_lose.m4a"),
+            winGame: ("assets/audio/legolas_wins.m4a")
+        },
+        "Gimli": {
+            name: "Gimli",
+            health: 280,
+            damage: 30,
+            fightPic: "assets/images/gimli.jpg",
+            lossingPic: "assets/images/gimli_losses.gif",
+            winningPic: "assets/images/gimli_wins.gif",
+            readyUp: ("assets/audio/gimli_ready.m4a"),
+            winRound: ("assets/audio/gimli_win_round.m4a"),
+            loseGame: ("assets/audio/gimli_lose.m4a"),
+            winGame: ("assets/audio/gimli_wins.m4a")
+        },
+        "Aragorn": {
+            name: "Aragorn",
+            health: 250,
+            damage: 35,
+            fightPic: "assets/images/aragorn.jpg",
+            lossingPic: "assets/images/aragorn_losses.gif",
+            winningPic: "assets/images/aragorn_wins.gif",
+            readyUp: ("assets/audio/aragorn_ready.mp3"),
+            winRound: ("assets/audio/aragorn_win_round.m4a"),
+            loseGame: ("assets/audio/aragorn_loses.m4a"),
+            winGame: ("assets/audio/aragorn_wins.m4a")
+        },
+        "Gandalf": {
+            name: "Gandalf",
+            health: 200,
+            damage: 45,
+            fightPic: "assets/images/gandalf.jpg",
+            lossingPic: "assets/images/gandalf_losses.gif",
+            winningPic: "assets/images/gandalf_wins.gif",
+            readyUp: ("assets/audio/gandalf_ready.m4a"),
+            winRound: ("assets/audio/gandalf_win_round.mp3"),
+            loseGame: ("assets/audio/gandalf_lose.m4a"),
+            winGame: ("assets/audio/gandalf_win.mp3")
+        },
+    }
+    gameStart();
+    //starts up the game
     function gameStart() {
         $("#results").html("The once united Fellowship of The Ring have fallen to its evil corruption " + "<br>" + "Now only one remains untouched by its taint" + "<br>" + "Choose the hero and let the battle begin");
         var heroLoader = [char.Legolas, char.Gimli, char.Aragorn, char.Gandalf];
@@ -138,7 +139,7 @@ $(document).ready(function() {
         gameStart();
     }
 
-    gameStart();
+
 
     $("#letThemFight").on("click", function() {
         // locks the game if you win, lose or win a round
