@@ -11,7 +11,7 @@ app.use(express.static(__dirname + "/app/assets/css"));
 app.use(express.static(__dirname + "/app/assets/java"));
 app.use(express.static(__dirname + "/app/assets/images"));
 app.use(express.static(__dirname + "/app/assets/audio"));
-require("./routes/html-routes.js")(app);
+require("./routes/html-route.js")(app);
 
 app.listen(PORT, function() {
   console.log("Server listening on: http://localhost:" + PORT);
