@@ -17,10 +17,7 @@ $(document).ready(function() {
   var health;
   var damage;
   var sound = document.createElement("audio");
-
-  var char = list.list;
-  console.log(char.Legolas);
-
+  let char = list.list;
   gameStart();
   //starts up the game
   function gameStart() {
@@ -31,25 +28,22 @@ $(document).ready(function() {
         "<br>" +
         "Choose the hero and let the battle begin"
     );
-    var heroLoader = [char.Legolas, char.Gimli, char.Aragorn, char.Gandalf];
-
-    //filling pick your fighter div
-    for (var i = 0; i < heroLoader.length; i++) {
+    for (let name in char) {
+      console.log(char[name].fightPic);
       charBox = $("<div>");
-      myImg = $("<img>").attr("src", heroLoader[i].fightPic);
+      myImg = $("<img>").attr("src", char[name].fightPic);
       health = $("<p>");
       damage = $("<p>");
       myImg.addClass("pics");
       damage.addClass("damage");
       health.addClass("health");
-      health.text("Health: " + heroLoader[i].health);
-      damage.text("Damage: " + heroLoader[i].damage);
+      health.text("Health: " + char[name].health);
+      damage.text("Damage: " + char[name].damage);
       charBox.addClass("characters");
-      charBox.attr("id", heroLoader[i].name);
+      charBox.attr("id", char[name].name);
       charBox.append(myImg, damage, health);
       $("#pickYourFighter").append(charBox);
     }
-    //sets up the hero and villain and puts them in their corner
     $(".characters").on("click", function() {
       fightOn = true;
       if (heroReady === false && badGuyReady === false) {
@@ -84,6 +78,7 @@ $(document).ready(function() {
     $("#heroRoom").empty();
     $("#badGuyRoom").empty();
     $("#pickYourFighter").empty();
+
     char.Legolas.health = 150;
     char.Legolas.damage = 40;
     char.Gimli.health = 280;
