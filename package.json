@@ -1,0 +1,17 @@
+{
+  "name": "newhangman",
+  "version": "1.0.0",
+  "description": "hangman game trying to add some fun new stuff to it",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
+    "node": "^14.8.0",
+    "node.js": "0.0.1-security"
+  }
+}
