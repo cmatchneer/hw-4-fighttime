@@ -29,7 +29,6 @@ $(document).ready(function() {
         "Choose the hero and let the battle begin"
     );
     for (let name in char) {
-      console.log(char[name].fightPic);
       charBox = $("<div>");
       myImg = $("<img>").attr("src", char[name].fightPic);
       health = $("<p>");
